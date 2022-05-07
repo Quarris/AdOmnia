@@ -1,0 +1,113 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://maven.parchmentmc.org' }
+        maven { url = "https://repo.spongepowered.org/maven" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
+        // Make sure this version matches the one included in Kotlin for Forge
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
+        // OPTIONAL Gradle plugin for Kotlin Serialization
+        classpath 'org.jetbrains.kotlin:kotlin-serialization:1.6.10'
+
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'kotlin'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'org.spongepowered.mixin'
+
+apply from: 'https://raw.githubusercontent.com/thedarkcolour/KotlinForForge/site/thedarkcolour/kotlinforforge/gradle/kff-3.1.0.gradle'
+
+version = "${mod_version}"
+group = "${mod_group}"
+archivesBaseName = "${mod_name}"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "${mod_id}.mixins.json"
+}
+
+minecraft {
+    // Change to your preferred mappings
+    mappings channel: 'parchment', version: "${parchment}-${mc}"
+    // Add your AccessTransformer
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,LOADING,CORE'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                adomnia {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run/server')
+
+            property 'forge.logging.markers', 'SCAN,LOADING,CORE'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                adomnia {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,LOADING,CORE'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'adomnia', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+
+            mods {
+                adomnia {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+// Include assets and data from data generators
+sourceSets.main.resources { srcDirs 'src/generated/resources/' }
+
+dependencies {
+    // Use the latest version of Minecraft Forge
+    minecraft "net.minecraftforge:forge:${mc}-${forge}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "17"
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title': "${mod_name}",
+                'Specification-Vendor': "Quarris",
+                'Specification-Version': "1", // We are version 1 of ourselves
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Implementation-Vendor' :"Quarris",
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}

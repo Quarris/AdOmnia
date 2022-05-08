@@ -7,7 +7,7 @@ import net.minecraft.world.phys.shapes.*
  * Adds functionality that will be used throughout the blocks within the adomnia mod
  */
 abstract class AbstractModBlock(properties: Properties) : Block(properties) {
-
+    
     /**
      * Extends the voxel shape class to allow for .join on shapes in a builder fashion.
      */

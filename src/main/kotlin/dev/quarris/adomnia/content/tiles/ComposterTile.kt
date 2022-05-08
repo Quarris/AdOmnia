@@ -51,8 +51,7 @@ class ComposterTile(pos: BlockPos, state: BlockState) :
     /**
      * Save your block entities data
      */
-    override fun onSave(tag: CompoundTag) {
-    }
+    override fun onSave(tag: CompoundTag) {}
 
     /**
      * Load your block entities data
@@ -64,11 +63,5 @@ class ComposterTile(pos: BlockPos, state: BlockState) :
      * Invalidate your capabilities here
      */
     override fun onInvalidate() {
-    }
-
-    /**
-     * Delegate saving to our own save function
-     */
-    override fun saveAdditional(pTag: CompoundTag) {
     }
 }

@@ -33,11 +33,11 @@ class SingleSkyblockSource(
     pBiomeSource: BiomeSource,
 ) : ChunkGenerator(pStructureSets, pStructureOverrides, pBiomeSource) {
 
-    protected var seed: Long = 0
-    protected lateinit var noises: Registry<NoiseParameters>
-    protected lateinit var settings: Holder<NoiseGeneratorSettings>
+    private var seed: Long = 0
+    private lateinit var noises: Registry<NoiseParameters>
+    private lateinit var settings: Holder<NoiseGeneratorSettings>
     private lateinit var router: NoiseRouter
-    protected lateinit var sampler: Sampler
+    private lateinit var sampler: Sampler
 
     constructor(registries: RegistryAccess, seed: Long) : this(
         registries.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY),
@@ -54,7 +54,7 @@ class SingleSkyblockSource(
         seed: Long,
         noises: Registry<NoiseParameters>,
         settings: Holder<NoiseGeneratorSettings>
-    ) : this(structures, Optional.empty(), biomes) {
+    ) : this(structures, Optional.of(HolderSet.direct(arrayListOf())), biomes) {
         this.seed = seed;
         this.noises = noises
         this.settings = settings
@@ -139,7 +139,7 @@ class SingleSkyblockSource(
                 commonCodec(inst).and(inst.group(
                     BiomeSource.CODEC.fieldOf("biome_source").forGetter {
                         it.getBiomeSource()
-                    }, Codec.LONG.fieldOf("seed").forGetter {
+                    }, Codec.LONG.fieldOf("seed").stable().forGetter {
                         it.seed
                     }, RegistryOps.retrieveRegistry(Registry.NOISE_REGISTRY).forGetter {
                         it.noises

@@ -1,11 +1,14 @@
 package dev.quarris.adomnia.registry
 
-import dev.quarris.adomnia.*
-import dev.quarris.adomnia.content.blocks.VariantState.*
-import dev.quarris.adomnia.content.items.*
-import net.minecraft.world.item.*
+import dev.quarris.adomnia.ModRef
+import dev.quarris.adomnia.content.items.GrassStarterItem
+import dev.quarris.adomnia.content.items.SaplingSeedItem
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.CreativeModeTab
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.Item.Properties
-import net.minecraft.world.level.block.*
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.block.Blocks
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
@@ -32,9 +35,17 @@ object ItemRegistry {
         object : BlockItem(BlockRegistry.AcaciaComposter.get(), Properties().tab(CreativeTab)) {}
     }
 
-
-    val OakAcorn: RegistryObject<AcornItem> = Registry.register("oak_acorn") {
-        AcornItem(Blocks.OAK_SAPLING, Properties().tab(CreativeTab))
+    val OakAcorn: RegistryObject<SaplingSeedItem> = Registry.register("oak_acorn") {
+        SaplingSeedItem(Blocks.OAK_SAPLING, Properties().tab(CreativeTab))
+    }
+    val BirchSeed: RegistryObject<SaplingSeedItem> = Registry.register("birch_seed") {
+        SaplingSeedItem(Blocks.BIRCH_SAPLING, Properties().tab(CreativeTab))
+    }
+    val SpruceCone: RegistryObject<SaplingSeedItem> = Registry.register("spruce_cone") {
+        SaplingSeedItem(Blocks.SPRUCE_SAPLING, Properties().tab(CreativeTab))
+    }
+    val JungleSeed: RegistryObject<SaplingSeedItem> = Registry.register("jungle_seed") {
+        SaplingSeedItem(Blocks.JUNGLE_SAPLING, Properties().tab(CreativeTab))
     }
 
     val GrassStarter: RegistryObject<GrassStarterItem> = Registry.register("grass_starter") {

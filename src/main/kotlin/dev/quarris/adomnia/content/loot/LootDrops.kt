@@ -1,17 +1,18 @@
 package dev.quarris.adomnia.content.loot
 
-import com.google.gson.*
-import dev.quarris.adomnia.*
-import dev.quarris.adomnia.registry.*
-import net.minecraft.resources.*
-import net.minecraft.world.item.*
-import net.minecraft.world.level.storage.loot.*
-import net.minecraft.world.level.storage.loot.predicates.*
-import net.minecraftforge.common.loot.*
-import net.minecraftforge.event.RegistryEvent.*
-import net.minecraftforge.eventbus.api.*
-import net.minecraftforge.fml.common.*
-import javax.annotation.*
+import com.google.gson.JsonObject
+import dev.quarris.adomnia.ModRef
+import dev.quarris.adomnia.registry.ItemRegistry
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.storage.loot.LootContext
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer
+import net.minecraftforge.common.loot.LootModifier
+import net.minecraftforge.event.RegistryEvent.Register
+import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.common.Mod
+import javax.annotation.Nonnull
 
 
 @Mod.EventBusSubscriber(modid = ModRef.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -38,15 +39,25 @@ object LootDrops {
     }
 
     /**
-     * This is applied to allow for our acorn to have a chance of dropping with the minecraft vanialla
+     * This is applied to allow for our acorn to have a chance of dropping with the minecraft vanilla
      * grass drops
      */
     class GrassDropModifier(conditionsIn: Array<LootItemCondition>) :
         LootModifier(conditionsIn) {
         @Nonnull
         public override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
-            val randomValue = Math.random()
-            if (randomValue < 0.05) generatedLoot.add(ItemStack(ItemRegistry.OakAcorn.get()))
+            if (Math.random() < 0.05) {
+                generatedLoot.add(ItemStack(ItemRegistry.OakAcorn.get()))
+            }
+            if (Math.random() < 0.05) {
+                generatedLoot.add(ItemStack(ItemRegistry.BirchSeed.get()))
+            }
+            if (Math.random() < 0.05) {
+                generatedLoot.add(ItemStack(ItemRegistry.SpruceCone.get()))
+            }
+            if (Math.random() < 0.05) {
+                generatedLoot.add(ItemStack(ItemRegistry.JungleSeed.get()))
+            }
             return generatedLoot
         }
     }

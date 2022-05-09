@@ -5,7 +5,7 @@ import net.minecraft.world.item.context.*
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SaplingBlock
 
-class AcornItem(
+class SaplingSeedItem(
     /**
      * Specifics the type of sapling block that will be placed upon right clicking the item
      * on a growable block

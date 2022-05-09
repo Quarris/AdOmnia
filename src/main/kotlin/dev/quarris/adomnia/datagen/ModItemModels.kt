@@ -1,8 +1,9 @@
 package dev.quarris.adomnia.datagen
 
-import dev.quarris.adomnia.*
-import dev.quarris.adomnia.registry.*
+import dev.quarris.adomnia.ModRef
+import dev.quarris.adomnia.registry.ItemRegistry
 import net.minecraft.data.DataGenerator
+import net.minecraft.world.item.Item
 import net.minecraftforge.client.model.generators.ItemModelProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 
@@ -20,12 +21,18 @@ class ModItemModels(dataGenerator: DataGenerator, existingFileHelper: ExistingFi
         composterModel("dark_oak_composter")
         composterModel("acacia_composter")
 
-
-        withExistingParent(ItemRegistry.OakAcorn.get().registryName!!.path, mcLoc("item/handheld"))
-            .texture("layer0", modLoc("item/oak_acorn"))
+        defaultItemModel(ItemRegistry.OakAcorn.get())
+        defaultItemModel(ItemRegistry.BirchSeed.get())
+        defaultItemModel(ItemRegistry.SpruceCone.get())
+        defaultItemModel(ItemRegistry.JungleSeed.get())
     }
 
-    private fun composterModel(name: String){
+    private fun defaultItemModel(item: Item) {
+        this.withExistingParent(item.registryName!!.path, mcLoc("item/handheld"))
+            .texture("layer0", modLoc("item/" + item.registryName!!.path))
+    }
+
+    private fun composterModel(name: String) {
         withExistingParent(modLoc("item/$name").path, modLoc("block/$name"))
     }
 }

@@ -5,6 +5,7 @@ import dev.quarris.adomnia.content.blocks.*
 import dev.quarris.adomnia.content.blocks.VariantState.*
 import dev.quarris.adomnia.registry.*
 import net.minecraft.data.DataGenerator
+import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.*
 import net.minecraftforge.common.data.ExistingFileHelper
 
@@ -19,41 +20,25 @@ class ModBlockStates(generator: DataGenerator, private val existingFileHelper: E
      */
     @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
     override fun registerStatesAndModels() {
-        getVariantBuilder(BlockRegistry.Composter.get()).forAllStates {
-            when (it.getValue(ComposterBlock.ComposterVariant)) {
-                Oak -> arrayOf(
-                    ConfiguredModel(
-                        ModelFile.ExistingModelFile(
-                            modLoc("block/oak_composter"),
-                            existingFileHelper
-                        )
-                    )
-                )
-                Spruce -> arrayOf(
-                    ConfiguredModel(
-                        ModelFile.ExistingModelFile(
-                            modLoc("block/spruce_composter"),
-                            existingFileHelper
-                        )
-                    )
-                )
-                Birch -> arrayOf(
-                    ConfiguredModel(
-                        ModelFile.ExistingModelFile(
-                            modLoc("block/birch_composter"),
-                            existingFileHelper
-                        )
-                    )
-                )
-                Jungle -> arrayOf(
-                    ConfiguredModel(
-                        ModelFile.ExistingModelFile(
-                            modLoc("block/jungle_composter"),
-                            existingFileHelper
-                        )
-                    )
-                )
-            }
-        }
+        composterBlockstate(BlockRegistry.BirchComposter.get())
+        composterBlockstate(BlockRegistry.JungleComposter.get())
+        composterBlockstate(BlockRegistry.OakComposter.get())
+        composterBlockstate(BlockRegistry.SpruceComposter.get())
+        composterBlockstate(BlockRegistry.DarkOakComposter.get())
+        composterBlockstate(BlockRegistry.AcaciaComposter.get())
     }
+
+
+    /**
+     * Creates the blockstate for a composter block
+     */
+    private fun composterBlockstate(block: Block) {
+        val name = block.registryName?.path
+        simpleBlock(
+            block, ModelFile.ExistingModelFile(
+                modLoc("block/$name"), existingFileHelper
+            )
+        )
+    }
+
 }

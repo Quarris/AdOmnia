@@ -13,13 +13,19 @@ class ModItemModels(dataGenerator: DataGenerator, existingFileHelper: ExistingFi
     ItemModelProvider(dataGenerator, ModRef.ID, existingFileHelper) {
 
     override fun registerModels() {
-        withExistingParent(modLoc("item/oak_composter").path, modLoc("block/oak_composter"))
-        withExistingParent(modLoc("item/spruce_composter").path, modLoc("block/spruce_composter"))
-        withExistingParent(modLoc("item/jungle_composter").path, modLoc("block/jungle_composter"))
-        withExistingParent(modLoc("item/birch_composter").path, modLoc("block/birch_composter"))
+        composterModel("oak_composter")
+        composterModel("spruce_composter")
+        composterModel("jungle_composter")
+        composterModel("birch_composter")
+        composterModel("dark_oak_composter")
+        composterModel("acacia_composter")
+
 
         withExistingParent(ItemRegistry.OakAcorn.get().registryName!!.path, mcLoc("item/handheld"))
             .texture("layer0", modLoc("item/oak_acorn"))
+    }
 
+    private fun composterModel(name: String){
+        withExistingParent(modLoc("item/$name").path, modLoc("block/$name"))
     }
 }

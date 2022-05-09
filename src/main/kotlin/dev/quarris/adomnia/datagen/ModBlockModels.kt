@@ -12,26 +12,22 @@ class ModBlockModels(dataGenerator: DataGenerator, existingFileHelper: ExistingF
     BlockModelProvider(dataGenerator, ModRef.ID, existingFileHelper) {
 
     override fun registerModels() {
-        withExistingParent(modLoc("block/oak_composter").path, modLoc("block/composter"))
-            .texture("planks", mcLoc("block/oak_planks"))
-            .texture("log_top", mcLoc("block/oak_log_top"))
-            .texture("log", mcLoc("block/oak_log"))
+        composterModel("block/oak_composter", "oak")
+        composterModel("block/spruce_composter", "spruce")
+        composterModel("block/birch_composter", "birch")
+        composterModel("block/jungle_composter", "jungle")
+        composterModel("block/dark_oak_composter", "dark_oak")
+        composterModel("block/acacia_composter", "acacia")
+    }
 
-        withExistingParent(modLoc("block/spruce_composter").path, modLoc("block/composter"))
-            .texture("planks", mcLoc("block/spruce_planks"))
-            .texture("log_top", mcLoc("block/spruce_log_top"))
-            .texture("log", mcLoc("block/spruce_log"))
-
-        withExistingParent(modLoc("block/jungle_composter").path, modLoc("block/composter"))
-            .texture("planks", mcLoc("block/jungle_planks"))
-            .texture("log_top", mcLoc("block/jungle_log_top"))
-            .texture("log", mcLoc("block/jungle_log"))
-
-        withExistingParent(modLoc("block/birch_composter").path, modLoc("block/composter"))
-            .texture("planks", mcLoc("block/birch_planks"))
-            .texture("log_top", mcLoc("block/birch_log_top"))
-            .texture("log", mcLoc("block/birch_log"))
-
-
+    /**
+     * Creates a child composter from the block composter using the target name for the textures.
+     */
+    private fun composterModel(name: String, targetName: String) {
+        withExistingParent(modLoc(name).path, modLoc("block/composter"))
+            .texture("planks", mcLoc("block/${targetName}_planks"))
+            .texture("log_top", mcLoc("block/${targetName}_log_top"))
+            .texture("log", mcLoc("block/${targetName}_log"))
+            .texture("particle", mcLoc("block/${targetName}_planks"))
     }
 }

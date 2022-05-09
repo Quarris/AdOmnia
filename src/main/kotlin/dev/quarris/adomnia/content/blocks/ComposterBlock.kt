@@ -40,18 +40,5 @@ class ComposterBlock(properties: Properties) :
         pContext: CollisionContext
     ): VoxelShape = composterShape
 
-    override fun getStateForPlacement(pContext: BlockPlaceContext): BlockState? {
-        val item = pContext.itemInHand.item
-        if (item !is ComposterItem) return super.getStateForPlacement(pContext)
-        return defaultBlockState().setValue(ComposterVariant, item.variant)
-    }
-
-    override fun createBlockStateDefinition(pBuilder: StateDefinition.Builder<Block, BlockState>) {
-        pBuilder.add(ComposterVariant)
-    }
-
-    companion object {
-        val ComposterVariant: EnumProperty<VariantState> = EnumProperty.create("variant", VariantState::class.java)
-    }
 
 }

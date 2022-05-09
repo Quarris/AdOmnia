@@ -3,6 +3,7 @@
   "textures": {
     "planks": "minecraft:block/birch_planks",
     "log_top": "minecraft:block/birch_log_top",
-    "log": "minecraft:block/birch_log"
+    "log": "minecraft:block/birch_log",
+    "particle": "minecraft:block/birch_planks"
   }
 }

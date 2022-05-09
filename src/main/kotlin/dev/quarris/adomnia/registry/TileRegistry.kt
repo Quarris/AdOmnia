@@ -14,15 +14,19 @@ object TileRegistry {
         DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, ModRef.ID)
 
     val Composter: RegistryObject<BlockEntityType<ComposterTile>> = Registry.register("composter") {
-        tile(BlockRegistry.Composter.get()) { ComposterTile(it.first, it.second) }
+        tile(
+            BlockRegistry.OakComposter.get(),
+            BlockRegistry.SpruceComposter.get(),
+            BlockRegistry.BirchComposter.get(),
+            BlockRegistry.JungleComposter.get()
+        ) { ComposterTile(it.first, it.second) }
     }
 
     /**
      * Allows for easily creating tile entity builders
      */
     private inline fun <reified T : BlockEntity> tile(
-        block: Block, crossinline supplier: (Pair<BlockPos, BlockState>) -> T,
-    ): BlockEntityType<T> = BlockEntityType.Builder.of({ pos, state -> supplier(pos to state) }, block).build(null)
-
+        vararg block: Block, crossinline supplier: (Pair<BlockPos, BlockState>) -> T,
+    ): BlockEntityType<T> = BlockEntityType.Builder.of({ pos, state -> supplier(pos to state) }, *block).build(null)
 
 }

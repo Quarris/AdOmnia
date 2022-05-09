@@ -3,6 +3,7 @@
   "textures": {
     "planks": "minecraft:block/jungle_planks",
     "log_top": "minecraft:block/jungle_log_top",
-    "log": "minecraft:block/jungle_log"
+    "log": "minecraft:block/jungle_log",
+    "particle": "minecraft:block/jungle_planks"
   }
 }

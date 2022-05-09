@@ -3,6 +3,7 @@
   "textures": {
     "planks": "minecraft:block/spruce_planks",
     "log_top": "minecraft:block/spruce_log_top",
-    "log": "minecraft:block/spruce_log"
+    "log": "minecraft:block/spruce_log",
+    "particle": "minecraft:block/spruce_planks"
   }
 }

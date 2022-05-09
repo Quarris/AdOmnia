@@ -1,13 +1,15 @@
 package dev.quarris.adomnia.content.blocks
 
+import dev.quarris.adomnia.content.items.*
 import dev.quarris.adomnia.content.tiles.*
 import dev.quarris.adomnia.registry.*
 import net.minecraft.core.*
+import net.minecraft.world.item.context.*
 import net.minecraft.world.level.*
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.EntityBlock
+import net.minecraft.world.level.block.*
 import net.minecraft.world.level.block.entity.*
 import net.minecraft.world.level.block.state.*
+import net.minecraft.world.level.block.state.properties.EnumProperty
 import net.minecraft.world.phys.shapes.*
 
 /**
@@ -37,5 +39,19 @@ class ComposterBlock(properties: Properties) :
         pPos: BlockPos,
         pContext: CollisionContext
     ): VoxelShape = composterShape
+
+    override fun getStateForPlacement(pContext: BlockPlaceContext): BlockState? {
+        val item = pContext.itemInHand.item
+        if (item !is ComposterItem) return super.getStateForPlacement(pContext)
+        return defaultBlockState().setValue(ComposterVariant, item.variant)
+    }
+
+    override fun createBlockStateDefinition(pBuilder: StateDefinition.Builder<Block, BlockState>) {
+        pBuilder.add(ComposterVariant)
+    }
+
+    companion object {
+        val ComposterVariant: EnumProperty<VariantState> = EnumProperty.create("variant", VariantState::class.java)
+    }
 
 }

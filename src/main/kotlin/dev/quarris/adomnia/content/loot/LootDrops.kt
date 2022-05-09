@@ -11,32 +11,36 @@ import net.minecraftforge.common.loot.*
 import net.minecraftforge.event.RegistryEvent.*
 import net.minecraftforge.eventbus.api.*
 import net.minecraftforge.fml.common.*
-import net.minecraftforge.registries.*
 import javax.annotation.*
 
 
 @Mod.EventBusSubscriber(modid = ModRef.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-object GrassDrops {
-
+object LootDrops {
+    /**
+     * Register our modifier serializers
+     */
     @SubscribeEvent
     fun registerModifiers(registryEvent: Register<GlobalLootModifierSerializer<*>?>) {
         registryEvent.registry.register(GrassDropSerializer().setRegistryName(ModRef.ID, "seed_drops"))
     }
 
+    /**
+     * Creates/reads our loot table modifier, bound to the json file (global_seed_modifier.json)
+     */
     class GrassDropSerializer : GlobalLootModifierSerializer<GrassDropModifier>() {
         override fun read(
             location: ResourceLocation?,
             `object`: JsonObject?,
             conditions: Array<LootItemCondition>
-        ): GrassDropModifier {
-            return GrassDropModifier(conditions)
-        }
+        ): GrassDropModifier = GrassDropModifier(conditions)
 
-        override fun write(instance: GrassDropModifier): JsonObject {
-            return JsonObject()
-        }
+        override fun write(instance: GrassDropModifier): JsonObject = JsonObject()
     }
 
+    /**
+     * This is applied to allow for our acorn to have a chance of dropping with the minecraft vanialla
+     * grass drops
+     */
     class GrassDropModifier(conditionsIn: Array<LootItemCondition>) :
         LootModifier(conditionsIn) {
         @Nonnull

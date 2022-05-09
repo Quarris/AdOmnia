@@ -37,6 +37,10 @@ object ItemRegistry {
         AcornItem(Blocks.OAK_SAPLING, Properties().tab(CreativeTab))
     }
 
+    val GrassStarter: RegistryObject<GrassStarterItem> = Registry.register("grass_starter") {
+        GrassStarterItem(Properties().tab(CreativeTab))
+    }
+
 
     /**Private because it should only be accessed through this object, enforcing the
      * creation of item properties to be done here and not in place (the item constructor)**/

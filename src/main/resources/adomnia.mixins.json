@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "adomnia.refmap.json",
   "mixins": [
+    "EntityMixin"
   ],
   "minVersion": "0.8"
 }

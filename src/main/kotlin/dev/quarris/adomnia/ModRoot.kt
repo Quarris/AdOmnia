@@ -4,7 +4,6 @@ import dev.quarris.adomnia.registry.WorldPresetRegistry
 import dev.quarris.adomnia.registry.*
 import net.minecraftforge.fml.common.Mod
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
-import thedarkcolour.kotlinforforge.forge.*
 
 @Mod(ModRef.ID)
 object ModRoot {

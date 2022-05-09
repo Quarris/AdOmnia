@@ -19,20 +19,20 @@ class ModBlockModels(dataGenerator: DataGenerator, existingFileHelper: ExistingF
             .texture("log_top", mcLoc("block/oak_log_top"))
             .texture("log", mcLoc("block/oak_log"))
 
-//        withExistingParent(modLoc("block/spruce_composter").path, BlockRegistry.Composter.get().registryName!!.path)
-//            .texture("planks", mcLoc("block/spruce_planks"))
-//            .texture("log_top", mcLoc("block/spruce_log_top"))
-//            .texture("log", mcLoc("block/spruce_log"))
-//
-//        withExistingParent(modLoc("block/jungle_composter").path, BlockRegistry.Composter.get().registryName!!.path)
-//            .texture("planks", mcLoc("block/jungle_planks"))
-//            .texture("log_top", mcLoc("block/jungle_log_top"))
-//            .texture("log", mcLoc("block/jungle_log"))
-//
-//        withExistingParent(modLoc("block/birch_composter").path, BlockRegistry.Composter.get().registryName!!.path)
-//            .texture("planks", mcLoc("block/birch_planks"))
-//            .texture("log_top", mcLoc("block/birch_log_top"))
-//            .texture("log", mcLoc("block/birch_log"))
+        withExistingParent(modLoc("block/spruce_composter").path, modLoc("block/composter"))
+            .texture("planks", mcLoc("block/spruce_planks"))
+            .texture("log_top", mcLoc("block/spruce_log_top"))
+            .texture("log", mcLoc("block/spruce_log"))
+
+        withExistingParent(modLoc("block/jungle_composter").path, modLoc("block/composter"))
+            .texture("planks", mcLoc("block/jungle_planks"))
+            .texture("log_top", mcLoc("block/jungle_log_top"))
+            .texture("log", mcLoc("block/jungle_log"))
+
+        withExistingParent(modLoc("block/birch_composter").path, modLoc("block/composter"))
+            .texture("planks", mcLoc("block/birch_planks"))
+            .texture("log_top", mcLoc("block/birch_log_top"))
+            .texture("log", mcLoc("block/birch_log"))
 
 
     }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "variant=oak": {
+      "model": "adomnia:block/oak_composter"
+    },
+    "variant=spruce": {
+      "model": "adomnia:block/spruce_composter"
+    },
+    "variant=birch": {
+      "model": "adomnia:block/birch_composter"
+    },
+    "variant=jungle": {
+      "model": "adomnia:block/jungle_composter"
+    }
+  }
+}

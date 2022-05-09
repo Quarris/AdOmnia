@@ -14,9 +14,9 @@ class ModItemModels(dataGenerator: DataGenerator, existingFileHelper: ExistingFi
 
     override fun registerModels() {
         withExistingParent(modLoc("item/oak_composter").path, modLoc("block/oak_composter"))
-//        withExistingParent(modLoc("item/spruce_composter").path, modLoc("block/spruce_composter"))
-//        withExistingParent(modLoc("item/jungle_composter").path, modLoc("block/jungle_composter"))
-//        withExistingParent(modLoc("item/birch_composter").path, modLoc("block/birch_composter"))
+        withExistingParent(modLoc("item/spruce_composter").path, modLoc("block/spruce_composter"))
+        withExistingParent(modLoc("item/jungle_composter").path, modLoc("block/jungle_composter"))
+        withExistingParent(modLoc("item/birch_composter").path, modLoc("block/birch_composter"))
 
         withExistingParent(ItemRegistry.OakAcorn.get().registryName!!.path, mcLoc("item/handheld"))
             .texture("layer0", modLoc("item/oak_acorn"))

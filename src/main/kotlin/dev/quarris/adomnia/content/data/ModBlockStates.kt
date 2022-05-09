@@ -19,11 +19,6 @@ class ModBlockStates(generator: DataGenerator, private val existingFileHelper: E
      */
     @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
     override fun registerStatesAndModels() {
-//        simpleBlock(
-//            BlockRegistry.Composter.get(),
-//            ModelFile.ExistingModelFile(modLoc("block/composter"), existingFileHelper)
-//        )
-
         getVariantBuilder(BlockRegistry.Composter.get()).forAllStates {
             when (it.getValue(ComposterBlock.ComposterVariant)) {
                 Oak -> arrayOf(

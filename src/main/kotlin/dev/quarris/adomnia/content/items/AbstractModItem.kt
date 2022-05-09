@@ -10,7 +10,7 @@ abstract class AbstractModItem(properties: Properties) : Item(properties) {
      */
     protected fun shrinkItemstack(context: UseOnContext) {
         val player = context.player ?: return
-        if (!player.isCreative) {
+        if (!player.abilities.instabuild) {
             val itemInHands = context.itemInHand
             itemInHands.shrink(1)
             player.setItemInHand(context.hand, itemInHands)

@@ -45,10 +45,9 @@ object LootDrops {
         LootModifier(conditionsIn) {
         @Nonnull
         public override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
-            val finalLootList: MutableList<ItemStack> = ArrayList()
             val randomValue = Math.random()
-            if (randomValue < 0.05) finalLootList.add(ItemStack(ItemRegistry.OakAcorn.get()))
-            return finalLootList
+            if (randomValue < 0.05) generatedLoot.add(ItemStack(ItemRegistry.OakAcorn.get()))
+            return generatedLoot
         }
     }
 }

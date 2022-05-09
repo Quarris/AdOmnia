@@ -1,9 +1,7 @@
-package dev.quarris.adomnia.content.data
+package dev.quarris.adomnia.datagen
 
 import dev.quarris.adomnia.*
-import dev.quarris.adomnia.registry.*
 import net.minecraft.data.DataGenerator
-import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.BlockModelProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 

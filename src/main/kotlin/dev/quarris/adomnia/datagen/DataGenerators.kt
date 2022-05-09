@@ -1,4 +1,4 @@
-package dev.quarris.adomnia.content.data
+package dev.quarris.adomnia.datagen
 
 import dev.quarris.adomnia.*
 import net.minecraftforge.eventbus.api.SubscribeEvent

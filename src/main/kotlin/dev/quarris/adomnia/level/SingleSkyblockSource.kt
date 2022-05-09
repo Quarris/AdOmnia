@@ -27,6 +27,9 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executor
 
+/**
+ * Level Type Chunk Generator implementation for a single block skyblock experience
+ */
 class SingleSkyblockSource(
     pStructureSets: Registry<StructureSet>,
     pStructureOverrides: Optional<HolderSet<StructureSet>>,

@@ -12,7 +12,7 @@ object ModuleManager {
     }
 
     fun addModule(module: IModule) : IModule {
-        modules[module.name] = module
+        modules[module.id] = module
         return module
     }
 

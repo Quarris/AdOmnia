@@ -9,23 +9,21 @@ import net.minecraft.world.level.*
 
 class ComposterRecipe(
     private val id: ResourceLocation,
-    private val ingredients: NonNullList<Ingredient>,
-    /**The number of times the player must jump on the composter before it forms**/
-    val steps: Int,
+    private val catalyst: Ingredient,
     /**the output of the composter**/
     val result: ItemStack
 ) : Recipe<Container> {
 
     override fun getId(): ResourceLocation = id
 
-    override fun getIngredients(): NonNullList<Ingredient> = ingredients
+    override fun getIngredients(): NonNullList<Ingredient> = NonNullList.of(catalyst)
 
     /**
      * Used to check if a recipe matches current crafting inventory
      */
     override fun matches(container: Container, pLevel: Level): Boolean {
         if (container.containerSize != 1) return false
-        return ingredients[0].test(container.getItem(0))
+        return catalyst.test(container.getItem(0))
     }
 
     /**

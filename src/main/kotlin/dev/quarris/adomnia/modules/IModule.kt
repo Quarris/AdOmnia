@@ -8,17 +8,17 @@ interface IModule {
     /**
      * Enables this module.
      */
-    fun enable() = ModuleManager.setEnabled(this.name, true)
+    fun enable() = ModuleManager.setEnabled(this.id, true)
 
     /**
      * Checks if this module is currently enabled.
      */
     val isEnabled: Boolean
-        get() = ModuleManager.isEnabled(this.name)
+        get() = ModuleManager.isEnabled(this.id)
 
     /**
-     * Name of this module, used for data storage
+     * ID for this module.
      */
-    val name: String
+    val id: String
 
 }

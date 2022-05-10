@@ -1,23 +1,57 @@
 package dev.quarris.adomnia.content.tiles
 
-import dev.quarris.adomnia.registry.*
+import dev.quarris.adomnia.extensions.getFirst
+import dev.quarris.adomnia.registry.TileRegistry
 import net.minecraft.core.BlockPos
-import net.minecraft.nbt.*
-import net.minecraft.world.*
-import net.minecraft.world.InteractionResult.*
-import net.minecraft.world.entity.player.*
-import net.minecraft.world.item.*
-import net.minecraft.world.level.*
-import net.minecraft.world.level.block.entity.BlockEntity
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.util.Mth
+import net.minecraft.world.InteractionResult
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.phys.*
+import net.minecraft.world.phys.BlockHitResult
+import net.minecraftforge.items.ItemStackHandler
 
 /**
- * Used to turn certain blocks into other blocks. Usually should involve recipes that have natural
- * blocks such a dirt, grass, leaves, etc.
+ * Maximum mulch can the composter can store.
+ */
+const val MaxMulch: Int = 100
+
+/**
+ * Composter turn compostable items (defined either by tags or recipes .. TBD) into Mulch.
+ * Once Mulch is filled up to the [MaxMulch] amount,
+ * it can be activated by a catalyst to turn it into an output item/fluid.
  */
 class ComposterTile(pos: BlockPos, state: BlockState) :
     AbstractModTile<ComposterTile>(TileRegistry.Composter.get(), pos, state) {
+
+    /**
+     * The internal inventory for storing items to compost into mulch
+     */
+    private val mulchItems: ItemStackHandler = ItemStackHandler(4)
+
+    /**
+     * The amount of mulch that was converted form its input items.
+     * Mulch is always set in range (0, 100)
+     */
+    private var mulch: Int = 0
+        set(value) {
+            field = Mth.clamp(value, 0, MaxMulch)
+        }
+
+    /**
+     * Called when the player stops on the block within the required bounds.
+     * Turns internal valid items into mulch per stomp.
+     */
+    fun stomp() {
+        if (mulch < MaxMulch) {
+            mulchItems.getFirst().ifPresent {
+                it.shrink(1)
+                mulch += 10
+            }
+        }
+    }
 
     /**
      * Used to update the state of the block entity.
@@ -51,12 +85,15 @@ class ComposterTile(pos: BlockPos, state: BlockState) :
     /**
      * Save your block entities data
      */
-    override fun onSave(tag: CompoundTag) {}
+    override fun onSave(tag: CompoundTag) {
+        tag.putInt("Mulch", mulch)
+    }
 
     /**
      * Load your block entities data
      */
     override fun onLoad(tag: CompoundTag) {
+        mulch = tag.getInt("Mulch")
     }
 
     /**

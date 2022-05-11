@@ -14,17 +14,17 @@ import net.minecraft.world.phys.BlockHitResult
 import net.minecraftforge.items.ItemStackHandler
 
 /**
- * Maximum mulch can the composter can store.
- */
-const val MaxMulch: Int = 100
-
-/**
  * Composter turn compostable items (defined either by tags or recipes .. TBD) into Mulch.
  * Once Mulch is filled up to the [MaxMulch] amount,
  * it can be activated by a catalyst to turn it into an output item/fluid.
  */
 class ComposterTile(pos: BlockPos, state: BlockState) :
     AbstractModTile<ComposterTile>(TileRegistry.Composter.get(), pos, state) {
+
+    /**
+     * Maximum mulch can the composter can store.
+     */
+    val MaxMulch: Int = 100
 
     /**
      * The internal inventory for storing items to compost into mulch

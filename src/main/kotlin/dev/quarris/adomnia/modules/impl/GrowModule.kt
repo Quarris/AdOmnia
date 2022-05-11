@@ -20,8 +20,10 @@ import java.util.*
  * Auto-bonemeal growing module
  * Spamming crouch will cause bonemeal effects on nearby blocks
  */
-@Mod.EventBusSubscriber(modid = ModRef.ID)
 object GrowModule : IModule {
+
+    override fun onInit() {
+    }
 
     /**
      * Random used in calculating chance to apply effect
@@ -78,8 +80,6 @@ object GrowModule : IModule {
     /**
      * ID for this module.
      */
-    private var _id = "grow"
-    override val id: String
-        get() = _id
+    override val id: String = "grow"
 
 }

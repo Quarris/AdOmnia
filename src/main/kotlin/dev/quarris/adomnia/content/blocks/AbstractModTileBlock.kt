@@ -1,14 +1,13 @@
 package dev.quarris.adomnia.content.blocks
 
-import dev.quarris.adomnia.content.tiles.*
-import net.minecraft.core.*
-import net.minecraft.world.*
-import net.minecraft.world.entity.player.*
-import net.minecraft.world.level.*
+import dev.quarris.adomnia.content.tiles.AbstractModTile
+import net.minecraft.core.BlockPos
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.EntityBlock
-import net.minecraft.world.level.block.entity.*
-import net.minecraft.world.level.block.state.*
-import net.minecraft.world.phys.*
+import net.minecraft.world.level.block.entity.BlockEntity
+import net.minecraft.world.level.block.entity.BlockEntityTicker
+import net.minecraft.world.level.block.entity.BlockEntityType
+import net.minecraft.world.level.block.state.BlockState
 import net.minecraftforge.registries.RegistryObject
 
 /**
@@ -19,27 +18,13 @@ abstract class AbstractModTileBlock<T : AbstractModTile<T>>(
     private val type: RegistryObject<BlockEntityType<T>>
 ) : AbstractModBlock(properties), EntityBlock {
 
+    @Suppress("UNCHECKED_CAST")
+    fun getTile(level: Level, pos: BlockPos): T = level.getBlockEntity(pos) as T
+
     /**
      * Delegates the creation of the block entity via the passed [type]
      */
     override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity? = type.get().create(pPos, pState)
-
-    /**
-     * Deletes the right click action on the block to the instance of the tile entity at the given position.
-     */
-    override fun use(
-        pState: BlockState,
-        pLevel: Level,
-        pPos: BlockPos,
-        pPlayer: Player,
-        pHand: InteractionHand,
-        pHit: BlockHitResult
-    ): InteractionResult {
-        val tile = pLevel.getBlockEntity(pPos)
-        if (tile !is AbstractModTile<*>) return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit)
-        val itemInHand = pPlayer.getItemInHand(pHand)
-        return tile.onUse(pPlayer, pLevel, pHit, itemInHand)
-    }
 
     /**
      * Uses the [TickDelegator] to delegate ticking to the [AbstractModTile] instances.
@@ -62,5 +47,4 @@ abstract class AbstractModTileBlock<T : AbstractModTile<T>>(
         override fun tick(pLevel: Level, pPos: BlockPos, pState: BlockState, pBlockEntity: AbstractModTile<*>) =
             pBlockEntity.onTick(pLevel)
     }
-
 }

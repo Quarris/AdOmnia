@@ -9,21 +9,21 @@ import net.minecraft.world.level.*
 
 class ComposterRecipe(
     private val id: ResourceLocation,
-    private val catalyst: Ingredient,
+    private val reactant: Ingredient,
     /**the output of the composter**/
     val result: ItemStack
 ) : Recipe<Container> {
 
     override fun getId(): ResourceLocation = id
 
-    override fun getIngredients(): NonNullList<Ingredient> = NonNullList.of(catalyst)
+    override fun getIngredients(): NonNullList<Ingredient> = NonNullList.of(reactant)
 
     /**
      * Used to check if a recipe matches current crafting inventory
      */
     override fun matches(container: Container, pLevel: Level): Boolean {
         if (container.containerSize != 1) return false
-        return catalyst.test(container.getItem(0))
+        return reactant.test(container.getItem(0))
     }
 
     /**

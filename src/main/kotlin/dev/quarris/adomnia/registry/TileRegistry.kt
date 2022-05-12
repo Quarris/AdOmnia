@@ -15,7 +15,7 @@ object TileRegistry {
 
     val Composter: RegistryObject<BlockEntityType<ComposterTile>> = Registry.register("composter") {
         tile(
-            BlockRegistry.OakComposter.get(),
+//            BlockRegistry.OakComposter.get(),
             BlockRegistry.SpruceComposter.get(),
             BlockRegistry.BirchComposter.get(),
             BlockRegistry.JungleComposter.get()

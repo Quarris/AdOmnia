@@ -16,9 +16,9 @@ import net.minecraftforge.registries.RegistryObject
 object ItemRegistry {
     val Registry: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, ModRef.ID)
 
-    val OakComposter: RegistryObject<Item> = Registry.register("oak_composter") {
-        object : BlockItem(BlockRegistry.OakComposter.get(), Properties().tab(CreativeTab)) {}
-    }
+    //    val OakComposter: RegistryObject<Item> = Registry.register("oak_composter") {
+//        object : BlockItem(BlockRegistry.OakComposter.get(), Properties().tab(CreativeTab)) {}
+//    }
     val BirchComposter: RegistryObject<Item> = Registry.register("birch_composter") {
         object : BlockItem(BlockRegistry.BirchComposter.get(), Properties().tab(CreativeTab)) {}
     }
@@ -56,6 +56,6 @@ object ItemRegistry {
     /**Private because it should only be accessed through this object, enforcing the
      * creation of item properties to be done here and not in place (the item constructor)**/
     private val CreativeTab = object : CreativeModeTab("AdOmnia") {
-        override fun makeIcon(): ItemStack = ItemStack(OakComposter.get())
+        override fun makeIcon(): ItemStack = ItemStack(BirchComposter.get())
     }
 }

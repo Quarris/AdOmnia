@@ -10,3 +10,4 @@ object ModRef {
     
     fun res(name: String): ResourceLocation = ResourceLocation(ID, name)
 }
+

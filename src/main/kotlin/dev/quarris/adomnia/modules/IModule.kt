@@ -1,5 +1,9 @@
 package dev.quarris.adomnia.modules
 
+import net.minecraftforge.eventbus.api.Event
+import net.minecraftforge.eventbus.api.IEventBus
+import thedarkcolour.kotlinforforge.forge.*
+
 
 /**
  * Module to implement with the ModuleManager system
@@ -7,30 +11,10 @@ package dev.quarris.adomnia.modules
  */
 interface IModule {
 
+    /**
+     * Called upon the module being loaded.
+     */
     fun onInit()
-
-    fun registerListener() {
-        /*
-        event = invoker.getEventType()
-        if (event is IModBusEvent)
-            MOD_BUS....
-        else
-            FORGE_BUS....
-
-
-         */
-    }
-
-    /**
-     * Enables this module.
-     */
-    fun enable() = ModuleManager.setEnabled(this.id, true)
-
-    /**
-     * Checks if this module is currently enabled.
-     */
-    val isEnabled: Boolean
-        get() = ModuleManager.isEnabled(this.id)
 
     /**
      * ID for this module.

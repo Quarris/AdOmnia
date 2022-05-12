@@ -1,7 +1,7 @@
 package dev.quarris.adomnia.datagen
 
 import dev.quarris.adomnia.ModRef
-import dev.quarris.adomnia.registry.ItemRegistry
+import dev.quarris.adomnia.modules.impl.*
 import net.minecraft.data.DataGenerator
 import net.minecraft.world.item.Item
 import net.minecraftforge.client.model.generators.ItemModelProvider
@@ -21,10 +21,10 @@ class ModItemModels(dataGenerator: DataGenerator, existingFileHelper: ExistingFi
         composterModel("dark_oak_composter")
         composterModel("acacia_composter")
 
-        defaultItemModel(ItemRegistry.OakAcorn.get())
-        defaultItemModel(ItemRegistry.BirchSeed.get())
-        defaultItemModel(ItemRegistry.SpruceCone.get())
-        defaultItemModel(ItemRegistry.JungleSeed.get())
+        defaultItemModel(GrowModule.OakAcorn.get())
+        defaultItemModel(GrowModule.BirchSeed.get())
+        defaultItemModel(GrowModule.SpruceCone.get())
+        defaultItemModel(GrowModule.JungleSeed.get())
     }
 
     private fun defaultItemModel(item: Item) {

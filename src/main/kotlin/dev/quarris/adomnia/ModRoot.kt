@@ -10,11 +10,11 @@ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 object ModRoot {
 
     init {
-        WorldPresetRegistry.PresetRegistry.register(MOD_BUS)
-        WorldPresetRegistry.ChunkGenRegistry.register(MOD_BUS)
-        ItemRegistry.Registry.register(MOD_BUS)
-        BlockRegistry.Registry.register(MOD_BUS)
-        TileRegistry.Registry.register(MOD_BUS)
+//        WorldPresetRegistry.PresetRegistry.register(MOD_BUS)
+//        WorldPresetRegistry.ChunkGenRegistry.register(MOD_BUS)
+//        ItemRegistry.Registry.register(MOD_BUS)
+//        BlockRegistry.Registry.register(MOD_BUS)
+//        TileRegistry.Registry.register(MOD_BUS)
         ModuleManager.buildModules()
     }
 

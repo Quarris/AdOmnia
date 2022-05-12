@@ -1,6 +1,7 @@
 package dev.quarris.adomnia.content.blocks
 
 import dev.quarris.adomnia.content.tiles.AbstractModTile
+import dev.quarris.adomnia.utils.Opt
 import net.minecraft.core.BlockPos
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.EntityBlock
@@ -8,14 +9,13 @@ import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraftforge.registries.RegistryObject
 
 /**
  * Adds functionality that will be used throughout the blocks within the adomnia mod
  */
 abstract class AbstractModTileBlock<T : AbstractModTile<T>>(
     properties: Properties,
-    private val type: RegistryObject<BlockEntityType<T>>
+    private val type: () -> Opt<BlockEntityType<T>>
 ) : AbstractModBlock(properties), EntityBlock {
 
     @Suppress("UNCHECKED_CAST")
@@ -24,7 +24,7 @@ abstract class AbstractModTileBlock<T : AbstractModTile<T>>(
     /**
      * Delegates the creation of the block entity via the passed [type]
      */
-    override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity? = type.get().create(pPos, pState)
+    override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity? = type()().create(pPos, pState)
 
     /**
      * Uses the [TickDelegator] to delegate ticking to the [AbstractModTile] instances.

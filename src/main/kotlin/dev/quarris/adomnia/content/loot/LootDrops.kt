@@ -2,7 +2,8 @@ package dev.quarris.adomnia.content.loot
 
 import com.google.gson.JsonObject
 import dev.quarris.adomnia.ModRef
-import dev.quarris.adomnia.registry.ItemRegistry
+import dev.quarris.adomnia.modules.impl.*
+import dev.quarris.adomnia.modules.impl.GrowModule.OakAcorn
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.storage.loot.LootContext
@@ -47,16 +48,16 @@ object LootDrops {
         @Nonnull
         public override fun doApply(generatedLoot: MutableList<ItemStack>, context: LootContext): List<ItemStack> {
             if (Math.random() < 0.05) {
-                generatedLoot.add(ItemStack(ItemRegistry.OakAcorn.get()))
+                generatedLoot.add(ItemStack(GrowModule.OakAcorn.get()))
             }
             if (Math.random() < 0.05) {
-                generatedLoot.add(ItemStack(ItemRegistry.BirchSeed.get()))
+                generatedLoot.add(ItemStack(GrowModule.BirchSeed.get()))
             }
             if (Math.random() < 0.05) {
-                generatedLoot.add(ItemStack(ItemRegistry.SpruceCone.get()))
+                generatedLoot.add(ItemStack(GrowModule.SpruceCone.get()))
             }
             if (Math.random() < 0.05) {
-                generatedLoot.add(ItemStack(ItemRegistry.JungleSeed.get()))
+                generatedLoot.add(ItemStack(GrowModule.JungleSeed.get()))
             }
             return generatedLoot
         }

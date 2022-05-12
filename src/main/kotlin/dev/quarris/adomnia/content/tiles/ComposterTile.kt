@@ -1,17 +1,14 @@
 package dev.quarris.adomnia.content.tiles
 
 import dev.quarris.adomnia.extensions.debug
-import dev.quarris.adomnia.registry.TileRegistry
+import dev.quarris.adomnia.modules.impl.*
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.util.Mth
-import net.minecraft.world.InteractionResult
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.phys.BlockHitResult
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.common.util.LazyOptional
 import net.minecraftforge.items.CapabilityItemHandler
@@ -23,7 +20,7 @@ import net.minecraftforge.items.ItemStackHandler
  * it can be activated by a catalyst to turn it into an output item/fluid.
  */
 class ComposterTile(pos: BlockPos, state: BlockState) :
-    AbstractModTile<ComposterTile>(TileRegistry.Composter.get(), pos, state) {
+    AbstractModTile<ComposterTile>(ComposterModule.Composter.get(), pos, state) {
 
     /**
      * Maximum mulch can the composter can store.

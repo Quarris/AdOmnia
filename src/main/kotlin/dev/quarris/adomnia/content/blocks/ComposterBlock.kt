@@ -2,6 +2,7 @@ package dev.quarris.adomnia.content.blocks
 
 import dev.quarris.adomnia.content.items.*
 import dev.quarris.adomnia.content.tiles.*
+import dev.quarris.adomnia.modules.impl.*
 import dev.quarris.adomnia.registry.*
 import net.minecraft.core.*
 import net.minecraft.world.item.context.*
@@ -16,7 +17,7 @@ import net.minecraft.world.phys.shapes.*
  * A block that has custom recipes for generating resources
  */
 class ComposterBlock(properties: Properties) :
-    AbstractModTileBlock<ComposterTile>(properties, TileRegistry.Composter), EntityBlock {
+    AbstractModTileBlock<ComposterTile>(properties, { ComposterModule.Composter }), EntityBlock {
 
     private val composterShape = Shapes.empty()
         .join(Shapes.box(0.0625, 0.0, 0.0625, 0.25, 0.0625, 0.25), BooleanOp.OR)

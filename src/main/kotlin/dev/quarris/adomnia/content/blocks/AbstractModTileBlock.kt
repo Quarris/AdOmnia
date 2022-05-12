@@ -1,6 +1,7 @@
 package dev.quarris.adomnia.content.blocks
 
 import dev.quarris.adomnia.content.tiles.*
+import dev.quarris.adomnia.utils.*
 import net.minecraft.core.*
 import net.minecraft.world.*
 import net.minecraft.world.entity.player.*
@@ -16,13 +17,13 @@ import net.minecraftforge.registries.RegistryObject
  */
 abstract class AbstractModTileBlock<T : AbstractModTile<T>>(
     properties: Properties,
-    private val type: RegistryObject<BlockEntityType<T>>
+    private val type: () -> Opt<BlockEntityType<T>>
 ) : AbstractModBlock(properties), EntityBlock {
 
     /**
      * Delegates the creation of the block entity via the passed [type]
      */
-    override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity? = type.get().create(pPos, pState)
+    override fun newBlockEntity(pPos: BlockPos, pState: BlockState): BlockEntity? = type()().create(pPos, pState)
 
     /**
      * Deletes the right click action on the block to the instance of the tile entity at the given position.

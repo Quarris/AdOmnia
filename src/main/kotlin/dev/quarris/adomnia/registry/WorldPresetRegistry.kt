@@ -12,16 +12,16 @@ import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
 
 object WorldPresetRegistry {
-
-    val PresetRegistry: DeferredRegister<ForgeWorldPreset> = DeferredRegister.create(ForgeRegistries.Keys.WORLD_TYPES, ModRef.ID)
-    val ChunkGenRegistry: DeferredRegister<Codec<out ChunkGenerator>> = DeferredRegister.create(Registry.CHUNK_GENERATOR_REGISTRY, ModRef.ID)
-
-    val SingleSkyblockGenerator: RegistryObject<Codec<out ChunkGenerator>> = ChunkGenRegistry.register("single_skyblock") { SingleSkyblockSource.CODEC }
-
-    val SingleSkyblock: RegistryObject<ForgeWorldPreset> = PresetRegistry.register("single_skybock") {
-        ForgeWorldPreset { reg: RegistryAccess, seed: Long ->
-            SingleSkyblockSource(reg, seed)
-        }
-    }
-
+//
+//    val PresetRegistry: DeferredRegister<ForgeWorldPreset> = DeferredRegister.create(ForgeRegistries.Keys.WORLD_TYPES, ModRef.ID)
+//    val ChunkGenRegistry: DeferredRegister<Codec<out ChunkGenerator>> = DeferredRegister.create(Registry.CHUNK_GENERATOR_REGISTRY, ModRef.ID)
+//
+//    val SingleSkyblockGenerator: RegistryObject<Codec<out ChunkGenerator>> = ChunkGenRegistry.register("single_skyblock") { SingleSkyblockSource.CODEC }
+//
+//    val SingleSkyblock: RegistryObject<ForgeWorldPreset> = PresetRegistry.register("single_skybock") {
+//        ForgeWorldPreset { reg: RegistryAccess, seed: Long ->
+//            SingleSkyblockSource(reg, seed)
+//        }
+//    }
+//
 }

@@ -1,6 +1,7 @@
 package dev.quarris.adomnia.datagen
 
 import dev.quarris.adomnia.*
+import dev.quarris.adomnia.modules.impl.*
 import dev.quarris.adomnia.registry.*
 import net.minecraft.data.DataGenerator
 import net.minecraftforge.common.data.LanguageProvider
@@ -16,7 +17,7 @@ class ModLangProvider(dataGenerator: DataGenerator, locale: String) :
      */
     override fun addTranslations() {
 //        add(ItemRegistry.OakComposter.get(), "Composter")
-        add(ItemRegistry.OakAcorn.get(), "Oak Acorn")
+//        add(GrowModule.OakAcorn.get(), "Oak Acorn")
     }
 
 }

@@ -15,7 +15,7 @@ class ModLangProvider(dataGenerator: DataGenerator, locale: String) :
      * Create our translations here
      */
     override fun addTranslations() {
-        add(ItemRegistry.OakComposter.get(), "Composter")
+//        add(ItemRegistry.OakComposter.get(), "Composter")
         add(ItemRegistry.OakAcorn.get(), "Oak Acorn")
     }
 

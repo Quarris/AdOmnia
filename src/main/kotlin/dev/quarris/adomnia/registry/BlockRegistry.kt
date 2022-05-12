@@ -10,9 +10,9 @@ import net.minecraftforge.registries.*
 object BlockRegistry {
     val Registry: DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, ModRef.ID)
 
-    val OakComposter: RegistryObject<Block> = Registry.register("oak_composter") {
-        ComposterBlock(Properties.of(Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD))
-    }
+//    val OakComposter: RegistryObject<Block> = Registry.register("oak_composter") {
+//        ComposterBlock(Properties.of(Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD))
+//    }
 
     val SpruceComposter: RegistryObject<Block> = Registry.register("spruce_composter") {
         ComposterBlock(Properties.of(Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD))

@@ -22,7 +22,7 @@ class ModBlockStates(generator: DataGenerator, private val existingFileHelper: E
     override fun registerStatesAndModels() {
         composterBlockstate(BlockRegistry.BirchComposter.get())
         composterBlockstate(BlockRegistry.JungleComposter.get())
-        composterBlockstate(BlockRegistry.OakComposter.get())
+//        composterBlockstate(BlockRegistry.OakComposter.get())
         composterBlockstate(BlockRegistry.SpruceComposter.get())
         composterBlockstate(BlockRegistry.DarkOakComposter.get())
         composterBlockstate(BlockRegistry.AcaciaComposter.get())
